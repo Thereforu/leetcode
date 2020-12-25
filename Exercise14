@@ -1,0 +1,11 @@
+#LeetCode 1470.重新排列数组
+class Solution:
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        i,j=0,n
+        c=[]
+        while i<n:
+            c.append(nums[i])
+            c.append(nums[j])
+            i+=1
+            j+=1
+        return c

@@ -1,0 +1,32 @@
+#LeetCode 1630.等差子数组
+class Solution:
+    def checkArithmeticSubarrays(self, nums: List[int], l: List[int], r: List[int]) -> List[bool]:
+        """
+        1 抽取子数组
+        2 子数组排序
+        3 判断是否等差数列
+        :param nums:
+        :param l:
+        :param r:
+        :return:
+        """
+        if len(l) != len(r):
+            return []
+        
+        result = []
+        for search_l, search_r in zip(l, r):
+            if search_l >= search_r:
+                result.append(False)
+            else:
+                sub_array = nums[search_l:search_r + 1]
+                sub_array.sort()
+                diff = sub_array[1] - sub_array[0]
+                cnt = 0
+                for i in range(1, search_r - search_l + 1):
+                    if diff != sub_array[i] - sub_array[i - 1]:
+                        result.append(False)
+                        break
+                    cnt += 1
+                if cnt == search_r - search_l:
+                    result.append(True)
+        return result

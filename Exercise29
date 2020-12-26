@@ -1,0 +1,15 @@
+3LeetCode 950.按递增顺序显示卡牌
+class Solution:
+    def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:
+        deck.sort()
+        i=0
+        res = collections.deque()
+
+        while deck:
+            if i%2 == 0:
+                res.appendleft( deck.pop())
+            else:
+                res.appendleft( res.pop())
+            i+=1
+
+        return res
